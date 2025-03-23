@@ -24,7 +24,14 @@ function getMoreArrays() {
 };
 getMoreArrays();
 
-
 function getCol(colIndex) {
     grid.map(row => row[colIndex]);
+};
+
+function getSquare() {
+    let square = [];
+    for (let i = 0; i < 2; i++) {
+        square.push(grid[i].slice(0, 2));
+    };
+    console.table(square);
 };

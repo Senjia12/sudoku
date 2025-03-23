@@ -34,4 +34,8 @@ function getSquare() {
         square.push(grid[i].slice(0, 3));
     };
     console.table(square);
-}
+};
+
+function completeGrid() {
+    array.push(Numben);
+};
