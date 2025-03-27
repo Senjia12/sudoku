@@ -1,7 +1,7 @@
 let grid = [];
-let row = [];
-let colonne = [];
-let colIndex;
+let rows = Array.from({ lenght: 9 }), () => new Set());
+let columns = Array.from({ lenght: 9 }), () => new Set());
+let squares = Array.from({ lenght: 9 }), () => new Set());
 
 function getNineNumbers() {
     let numbers = [];
@@ -24,8 +24,8 @@ function getMoreArrays() {
 };
 getMoreArrays();
 
-function getCol(colIndex) {
-    grid.map(row => row[colIndex]);
+function allowNb(grid, row, col, nb) {
+  
 };
 
 function getSquare() {
