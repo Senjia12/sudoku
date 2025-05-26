@@ -11,17 +11,8 @@ let grid = Array.from({ length: n * n }, () => new Array()); // Initialize the g
 
 function get_n_Numbers() {
     let numbers = [];
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    let availableNumbers = Array.from({ lenght: n * n }, (_, i) => i + 1);
-=======
     let numberGen;
-    let availableNumbers = Array.from({ length: n * n }, (_, i) => i + 1);
->>>>>>> Stashed changes
-=======
-    let numberGen;
-    let availableNumbers = Array.from({ length: n * n }, (_, i) => i + 1);
->>>>>>> Stashed changes
+    let availableNumbers = Array.from({ length: n * n }, (_, i) => i + 1); // Create an array of numbers from 1 to n*n
     
     for (let i = 1; i <= n * n; i++) {
         let index = Math.floor((Math.random() * availableNumbers.length));
@@ -49,15 +40,8 @@ function allowNb(grid, row, col, square, number) {
   };
 };
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-function getSquare() {
-=======
-=======
->>>>>>> Stashed changes
-function getSquare() { /*only tells the first square ?*/
+function getSquare() { /*only tells the first square ? NEED TO DEFINE NTH*/
     let square = [];
->>>>>>> Stashed changes
     for (let i = 0; i < 3; i++) {
         squares[nth].push(grid[i].slice(0, 3));
     };
