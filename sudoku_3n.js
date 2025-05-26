@@ -12,7 +12,12 @@ let grid = Array.from({ length: n * n }, () => new Array()); // Initialize the g
 function get_n_Numbers() {
     let numbers = [];
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     let availableNumbers = Array.from({ lenght: n * n }, (_, i) => i + 1);
+=======
+    let numberGen;
+    let availableNumbers = Array.from({ length: n * n }, (_, i) => i + 1);
+>>>>>>> Stashed changes
 =======
     let numberGen;
     let availableNumbers = Array.from({ length: n * n }, (_, i) => i + 1);
@@ -45,8 +50,11 @@ function allowNb(grid, row, col, square, number) {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 function getSquare() {
 =======
+=======
+>>>>>>> Stashed changes
 function getSquare() { /*only tells the first square ?*/
     let square = [];
 >>>>>>> Stashed changes
