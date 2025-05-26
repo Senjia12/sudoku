@@ -8,7 +8,6 @@ let n = 3;
 
 function get_n_Numbers() {
     let numbers = [];
-    let numberGen;
     let availableNumbers = Array.from({ lenght: n * n }, (_, i) => i + 1);
     
     for (let i = 1; i <= n * n; i++) {
@@ -37,9 +36,8 @@ function allowNb(grid, row, col, square, number) {
 };
 
 function getSquare() {
-    let square = [];
     for (let i = 0; i < 3; i++) {
-        square.push(grid[i].slice(0, 3));
+        squares[nth].push(grid[i].slice(0, 3));
     };
     console.table(square);
 };
