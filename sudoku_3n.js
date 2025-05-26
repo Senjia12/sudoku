@@ -1,39 +1,35 @@
 let n = 3;
+let grid = Array.from({ length: n * n }, () => Array().fill(0)); // Initialize the grid with empty arrays (no need of new)
 let numbersGrid = Array.from({ length: n * n }, () => new Array());; // Array to hold the generated numbers for each row
-let rows = Array.from({ length: n * n }, () => new Set());
-let columns = Array.from({ length: n * n }, () => new Set());
-let squares = Array.from({ length: n * n }, () => new Set());
+let rows = Array.from({ length: n * n }, (_, row) => Array.from({ length: n * n }, (_, col) => grid[row][col]));
+let columns = Array.from({ length: n * n }, (_, col) =>  Array.from({ length: n * n }, (_, row) =>); // FINISH
+let squares = Array.from({ length: n * n }, (_, i) => new Set());
 let LPA = Array.from({ length: n }, () => new Set()); /*Last Position Available = every n columns (square side length, so n columns = column of n squares) allow n times the same number, 1 occurence each col and square, when n-1 numbers already there, this keeps last column and square accepting number
 why a set ? just need 3 values for position and maybe one for number
 gonna think how to manage data*/
 let number;
-let grid = Array.from({ length: n * n }, () => new Array()); // Initialize the grid with empty arrays
 
 function get_n_Numbers() {
     let numbers = [];
-    let numberGen;
     let availableNumbers = Array.from({ length: n * n }, (_, i) => i + 1); // Create an array of numbers from 1 to n*n
     
     for (let i = 1; i <= n * n; i++) {
         let index = Math.floor((Math.random() * availableNumbers.length));
-        numberGen = availableNumbers[index];
-        numbers.push(numberGen);
-        availableNumbers.splice(index, 1);
+        numbers.push(availableNumbers.splice(index, 1)[0]); // Randomly select a number and remove it from the available numbers ([0] because splice return an array)
     };
-    console.log(numbers);
-    numbersGrid[i - 1] = numbers;
+  return numbers;
 };
 
 function getMoreArrays() {
-    for (let i = 1; i <=8 ; i++) {
-        get_n_Numbers();
+    for (let i = 0; i < (n * n - 1) ; i++) {
+        numbersGrid[i] = [...get_n_Numbers()];
     };
     console.table(numbersGrid);
     console.table(grid); /*grid is still empty ?*/
 };
 
-function allowNb(grid, row, col, square, number) {
-  if (rows.has(number) == false && columns.has(number) == false && squares.has(number) == false){
+function allowNb(number, sq, row, col) { /*check if number is allowed in square, row and column*/
+  if (!rows[row].has(number) && !columns[col].has(number) && squares[sq].has(number)){
     return true;
   } else {/*return only true or false positions with elif ? add option for col, row, square deductive left place for number ?*/
     return false;
@@ -51,11 +47,11 @@ function getSquare() { /*only tells the first square ? NEED TO DEFINE NTH*/
 function completeGrid() {
   var step = 1;
   var nbRep = n * n;
-  grid[0] = numbersGrid[0] = [...numbers];  ;
+  grid[0] = [...numbersGrid[0]];
   step++;
   /*2nd row*/
   grid[0] = numbersGrid[0].filter(val => condition(val));
-  allowNb();
+  allowNb(number, row, col, sq); // define row, col, sq and make sure number doesnt contain an other value
   /*gotta fill the 2nd row*/
   
    if (step % n === 0) { /*if step is a multiple of n, so the end row of a square*/
