@@ -1,9 +1,28 @@
 let n = 3;
-let grid = Array.from({ length: n * n }, () => Array().fill(0)); // Initialize the grid with empty arrays (no need of new)
-let numbersGrid = Array.from({ length: n * n }, () => new Array());; // Array to hold the generated numbers for each row
+let grid = Array.from({ length: n * n }, () => Array(n * n).fill(0)); // Initialize the grid with empty arrays (no need of new)
+let numbersGrid = Array.from({ length: n * n }, () => new Array(n * n)); // Array to hold the generated numbers for each row
 let rows = Array.from({ length: n * n }, (_, row) => Array.from({ length: n * n }, (_, col) => grid[row][col]));
-let columns = Array.from({ length: n * n }, (_, col) =>  Array.from({ length: n * n }, (_, row) =>); // FINISH
-let squares = Array.from({ length: n * n }, (_, i) => new Set());
+
+let columns = Array.from({ length: n * n }, (_, col) => new Proxy({}, {//dynamic proxy to access columns
+  get (_, row) {
+    return grid[row][col]; // Access the column in the grid
+  },
+  set(_, row, value) {
+    grid[row][col] = value; // Set column value from the grid
+    return true; // Indicate success
+  }
+}));
+
+let squares = Array.from({ length: n * n }, () => new proxy({}, {
+
+    get (_, row, col) {
+    return grid[row][col];
+    },
+    set(_, row, col, value) {
+      grid[row][col] = value; // Set square value from the grid
+    }
+}));
+
 let LPA = Array.from({ length: n }, () => new Set()); /*Last Position Available = every n columns (square side length, so n columns = column of n squares) allow n times the same number, 1 occurence each col and square, when n-1 numbers already there, this keeps last column and square accepting number
 why a set ? just need 3 values for position and maybe one for number
 gonna think how to manage data*/
